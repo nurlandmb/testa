@@ -48,6 +48,7 @@
   &__check-item{
     margin-right: 20px;
     span{
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -60,7 +61,7 @@
       display: none;
     }
     input:checked ~ span{
-      border-color: red;
+      border-color: #094d74;
     }
   }
 }

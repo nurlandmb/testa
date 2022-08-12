@@ -51,6 +51,7 @@ export default function formReducer(state = initialState, action) {
       return {
         ...state,
         activeStage: action.payload,
+        isLoading: false,
       };
     default:
       return state;
@@ -91,6 +92,7 @@ export const formSubmit = (state) => async (dispatch) => {
       }
     );
     dispatch(submitSuccess());
+    dispatch(setStage(3))
     console.log(res);
   } catch (err) {
     console.log(err);
@@ -167,7 +169,7 @@ export const dateValidate = () => {
 };
 
 export const formValidate = (state) => (dispatch) => {
-  dispatch(formLoad);
+  dispatch(formLoad());
   if (state.date.trim() === '') {
     // dispatch(dateValidate());
   }

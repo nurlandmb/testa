@@ -102,14 +102,22 @@ body {
       margin-left: 15px;
       border: 1px solid #094d74;
       background: #094d74;
-      color: #eef0f6;
+      color: #fff;
       transition: all .2s;
+      &.white{
+        border-color: #fff;
+        background: #fff;
+        color: #094d74;
+        &:hover{
+          border-color: #094d74;
+        }
+      }
       &:disabled{
         opacity: .5;
         pointer-events: none;
       }
       &:hover{
-        background-color: #eef0f6;
+        background-color: #fff;
         color: #094d74;
       }
     }
