@@ -1,0 +1,24 @@
+.form-item{
+  &.wrong{
+    color: #CC0066;
+  }
+  &.wrong .form-item__input{
+    border-color: #CC3300;
+    outline: none;
+    // color: rgba(#CC0066, .8);
+    // background-color: red;
+  }
+  &__input{
+    display: block;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+    width: 100%;
+    &:focus{
+      outline: 1px solid #094d74;
+
+    }
+  }
+}
