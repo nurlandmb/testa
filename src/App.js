@@ -6,6 +6,8 @@ import Message from './components/Message';
 import SignUp from './components/SignUp';
 import CheckIco from './img/check.svg'
 import './components/style.scss'
+import { useDispatch, useSelector } from 'react-redux';
+
 const getData = async () => {
   // console.log(firebase);
   const querySnapshot = await getDocs(collection(db, 'leads'));
@@ -15,6 +17,9 @@ const getData = async () => {
 };
 
 function App() {
+  const dispatch = useDispatch();
+  const form = useSelector((state) => state.form);
+  console.log(form);
   let [activeStage, setActiveStage] = useState(0)
   return (
     <section className="App">
@@ -61,17 +66,22 @@ function App() {
             <Checkbox active={activeStage === 2} />
           </div>
           <div className="form__content-bottom">
+            {
+              activeStage > 0 && 
             <button
-              className="form__content-bottom__item"
+              className="form__content-bottom__item white"
               onClick={() => setActiveStage(--activeStage)}
             >
               Back
             </button>
+            }
             <button
               className="form__content-bottom__item"
               onClick={() => setActiveStage(++activeStage)}
             >
-              Next Step
+              {
+                activeStage === 2 ? 'Submit' : 'Next Step'
+              }
             </button>
           </div>
         </div>

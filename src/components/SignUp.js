@@ -1,7 +1,11 @@
-import React from 'react'
+import React from 'react';
 import Input from './Input';
+import { useDispatch, useSelector } from 'react-redux';
+import { formEdit } from '../redux/form';
 
 export default function SignUp(props) {
+  const dispatch = useDispatch();
+
   return (
     <div
       className={
@@ -16,7 +20,12 @@ export default function SignUp(props) {
         <Input labelText="First Name" />
         <Input labelText="Last Name" />
         <Input labelText="Date of birth" type="date" />
-        <Input labelText="Email" type="email" />
+        <Input
+          labelText="Email"
+          name="email"
+          type="email"
+          onChange={(e) => dispatch(formEdit(e))}
+        />
         <Input labelText="Address" />
       </div>
     </div>
