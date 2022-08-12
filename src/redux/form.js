@@ -1,6 +1,12 @@
-import { FORM_EDIT, FORM_LOAD, FORM_VALIDATE, SET_STAGE } from './actionTypes';
-import firebase, { db, auth } from '../firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import {
+  FORM_EDIT,
+  FORM_LOAD,
+  FORM_VALIDATE,
+  SET_STAGE,
+  FORM_SUCCESS,
+} from './actionTypes';
+import { db, auth } from '../firebase';
+import { doc, setDoc } from 'firebase/firestore';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 const initialState = {
   activeStage: 0,
@@ -14,6 +20,7 @@ const initialState = {
   checkBox1: '',
   checkBox2: '',
   isLoading: false,
+  sendSuccess: false,
   validate: {
     email: false,
     emailError: '',
@@ -33,7 +40,12 @@ export default function formReducer(state = initialState, action) {
     case FORM_VALIDATE:
       return {
         ...state,
-        validate: {...state.validate, ...action.payload},
+        validate: { ...state.validate, ...action.payload },
+      };
+    case FORM_SUCCESS:
+      return {
+        ...state,
+        sendSuccess: true,
       };
     case SET_STAGE:
       return {
@@ -60,12 +72,35 @@ export const setStage = (stage) => {
   };
 };
 
-export const formSubmit = (state) => (dispatch) => {
+export const formSubmit = (state) => async (dispatch) => {
   console.log(state);
-  dispatch(formLoad);
-  
+  dispatch(formLoad());
+  try {
+    const res = await setDoc(
+      doc(db, 'leads', state.email + Math.random() * 10),
+      {
+        firstName: state.firstName,
+        lastName: state.lastName,
+        date: state.date,
+        email: state.email,
+        address: state.address,
+        message: state.message,
+        messageCheck: state.messageCheck,
+        checkBox1: state.checkBox1,
+        checkBox2: state.checkBox2,
+      }
+    );
+    dispatch(submitSuccess());
+    console.log(res);
+  } catch (err) {
+    console.log(err);
+  }
 };
-
+const submitSuccess = () => {
+  return {
+    type: FORM_SUCCESS,
+  };
+};
 const validateEmailReg = (email) => {
   return String(email)
     .toLowerCase()

@@ -6,6 +6,7 @@ import CheckIco from './img/check.svg';
 import './components/style.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { formSubmit, formValidate, setStage } from './redux/form';
+import Success from './components/Success';
 
 function App() {
   const dispatch = useDispatch();
@@ -64,12 +65,14 @@ function App() {
             <SignUp active={form.activeStage === 0} />
             <Message active={form.activeStage === 1} />
             <Checkbox active={form.activeStage === 2} />
+            <Success active={form.sendSuccess} />
           </div>
           <div className="form__content-bottom">
             {form.activeStage > 0 && (
               <button
                 className="form__content-bottom__item white"
                 onClick={() => dispatch(setStage(form.activeStage - 1))}
+                disabled={form.isLoading}
               >
                 Back
               </button>
