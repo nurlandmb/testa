@@ -1,6 +1,10 @@
 import React from 'react';
+import { formEdit } from '../redux/form';
 import Check from './Check';
+import { useDispatch } from 'react-redux';
+
 export default function Checkbox(props) {
+  const dispatch = useDispatch();
   return (
     <div
       className={
@@ -13,7 +17,12 @@ export default function Checkbox(props) {
       <h2 className="form-section__title">Checkbox</h2>
       <div className="form-section__check">
         <label className="form-section__check-item">
-          <input type="radio" name="check1" />
+          <input
+            type="radio"
+            value="check1-2"
+            name="checkBox1"
+            onChange={(e) => dispatch(formEdit(e))}
+          />
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +42,12 @@ export default function Checkbox(props) {
           </span>
         </label>
         <label className="form-section__check-item">
-          <input type="radio" name="check1" />
+          <input
+            type="radio"
+            value="check1-1"
+            name="checkBox1"
+            onChange={(e) => dispatch(formEdit(e))}
+          />
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -58,15 +72,19 @@ export default function Checkbox(props) {
       <div className="form-section__wrapper-check">
         <Check
           className="form-section__wrapper-check__item"
-          name="checkboxCheck"
+          name="checkBox2"
           type="radio"
+          value="Some cool choice with veeeeeeeeeery long description"
+          onChange={(e) => dispatch(formEdit(e))}
         >
           Some cool choice with veeeeeeeeeery long description
         </Check>
         <Check
           className="form-section__wrapper-check__item"
-          name="checkboxCheck"
+          name="checkBox2"
           type="radio"
+          value="Some cool choice 2"
+          onChange={(e) => dispatch(formEdit(e))}
         >
           Some cool choice 2
         </Check>

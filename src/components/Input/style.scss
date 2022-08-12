@@ -1,5 +1,13 @@
 .form-item{
-  
+  &.wrong{
+    color: #CC0066;
+  }
+  &.wrong .form-item__input{
+    border-color: #CC3300;
+    outline: none;
+    // color: rgba(#CC0066, .8);
+    // background-color: red;
+  }
   &__input{
     display: block;
     border-radius: 5px;
