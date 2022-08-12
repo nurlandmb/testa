@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 import Checkbox from './components/Checkbox';
 import Message from './components/Message';
 import SignUp from './components/SignUp';
-// const db = firebase.firestore();
+import CheckIco from './img/check.svg'
+import './components/style.scss'
 const getData = async () => {
   // console.log(firebase);
   const querySnapshot = await getDocs(collection(db, 'leads'));
@@ -18,30 +19,60 @@ function App() {
   return (
     <section className="App">
       <div className="form">
-        <div className="form__img"></div>
+        <div className="form__img">
+          <img src="https://wallpaper.dog/large/10765266.jpg" alt="img" />
+        </div>
         <div className="form__content">
           <div className="form__content-top">
-            <p className="form__content-top__item">
-              <span>1</span>
+            <p
+              className={
+                activeStage === 0
+                  ? 'form__content-top__item active'
+                  : 'form__content-top__item'
+              }
+            >
+              <span>{activeStage > 0 ? <img src={CheckIco} /> : '1'}</span>
               Sign Up
             </p>
-            <p className="form__content-top__item">
-              <span>2</span>
+            <p
+              className={
+                activeStage === 1
+                  ? 'form__content-top__item active'
+                  : 'form__content-top__item'
+              }
+            >
+              <span>{activeStage > 1 ? <img src={CheckIco} /> : '2'}</span>
               Message
             </p>
-            <p className="form__content-top__item">
-              <span>3</span>
+            <p
+              className={
+                activeStage === 2
+                  ? 'form__content-top__item active'
+                  : 'form__content-top__item'
+              }
+            >
+              <span>{activeStage > 2 ? <img src={CheckIco} /> : '3'}</span>
               Checkbox
             </p>
           </div>
           <div className="form__content-middle">
-            <Checkbox active={activeStage === 0} />
+            <SignUp active={activeStage === 0} />
             <Message active={activeStage === 1} />
-            <SignUp active={activeStage === 2} />
+            <Checkbox active={activeStage === 2} />
           </div>
           <div className="form__content-bottom">
-            <button className="form__content-bottom__item">Back</button>
-            <button className="form__content-bottom__item" onClick={() => setActiveStage(++activeStage)}>Next Step</button>
+            <button
+              className="form__content-bottom__item"
+              onClick={() => setActiveStage(--activeStage)}
+            >
+              Back
+            </button>
+            <button
+              className="form__content-bottom__item"
+              onClick={() => setActiveStage(++activeStage)}
+            >
+              Next Step
+            </button>
           </div>
         </div>
       </div>

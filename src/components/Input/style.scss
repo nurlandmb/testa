@@ -1,0 +1,16 @@
+.form-item{
+  
+  &__input{
+    display: block;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+    width: 100%;
+    &:focus{
+      outline: 1px solid #094d74;
+
+    }
+  }
+}

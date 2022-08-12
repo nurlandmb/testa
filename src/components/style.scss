@@ -1,0 +1,66 @@
+.form-section {
+  &__step{
+    margin: 10px 0;
+  }
+  &__title {
+    font-weight: 700;
+    margin: 0 0 30px 0;
+    font-size: 32px;
+  }
+  &__wrapper-input {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    grid-template-rows: 1fr 1fr;
+    // grid-area: ;
+  }
+  &__textarea {
+    display: block;
+    width: 100%;
+  }
+  &__textarea-item {
+    resize: none;
+    display: block;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+    min-height: 200px;
+    max-height: 250px;
+    width: 100%;
+    &:focus {
+      outline: 1px solid #094d74;
+    }
+  }
+  &__wrapper-check{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px 0;
+    &__item{
+      margin-right: 20px;
+    }
+  }
+  &__check{
+    display: flex;
+    align-items: center;
+  }
+  &__check-item{
+    margin-right: 20px;
+    span{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+
+    }
+    input{
+      display: none;
+    }
+    input:checked ~ span{
+      border-color: red;
+    }
+  }
+}
