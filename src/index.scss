@@ -1,0 +1,18 @@
+body{
+  background-color: #ccc;
+}
+.form__content-middle{
+  position: relative;
+  min-height: 600px;
+  &__item{
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    &.active{
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}

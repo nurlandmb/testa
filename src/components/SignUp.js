@@ -1,7 +1,15 @@
 import React from 'react'
 
-export default function SignUp() {
+export default function SignUp(props) {
   return (
-    <div>SignUp</div>
-  )
+    <div
+      className={
+        props.active
+          ? 'form__content-middle__item active'
+          : 'form__content-middle__item'
+      }
+    >
+      SignUp
+    </div>
+  );
 }

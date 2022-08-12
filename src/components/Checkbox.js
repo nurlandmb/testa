@@ -1,7 +1,15 @@
 import React from 'react'
 
-export default function Checkbox() {
+export default function Checkbox(props) {
   return (
-    <div>Checkbox</div>
-  )
+    <div
+      className={
+        props.active
+          ? 'form__content-middle__item active'
+          : 'form__content-middle__item'
+      }
+    >
+      Checkbox
+    </div>
+  );
 }
